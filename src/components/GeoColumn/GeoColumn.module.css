@@ -1,0 +1,35 @@
+.column {
+  overflow-y: auto;
+  height: 100%;
+}
+
+.column:last-child {
+  border-right: none;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-width: 200px;
+  text-align: left;
+  background: none;
+  border: none;
+  border-radius: 0;
+  padding: 12px;
+  font-size: 16px;
+  line-height: 24px;
+  color: #0052c2;
+  cursor: pointer;
+}
+
+.item:hover {
+  background-color: #f5f5f5;
+}
+
+.active {
+  background-color: #fff2c8;
+  border-radius: 8px;
+  color: #4a4a4a;
+}
