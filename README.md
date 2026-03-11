@@ -1,73 +1,31 @@
-# React + TypeScript + Vite
+# Выбор города — тестовое задание FarPost 2026
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Компонент выбора города с поддержкой десктопной и мобильной версии.
 
-Currently, two official plugins are available:
+## Стек
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React + TypeScript
+- Vite
+- Zustand — управление состоянием
+- js-cookie — работа с cookie
+- CSS Modules — стили
 
-## React Compiler
+## Функциональность
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Кнопка "Выбрать город" и отображение текущего выбранного города
+- Модальное окно с иерархическим выбором: Федеральный округ → Регион → Город
+- Колонка городов: топ-3 по количеству объявлений, алфавитная сортировка с группировкой по букве, жирный шрифт для городов с count > 30000
+- Поиск по названию города — фильтрует колонку городов, остальные колонки показывают родительские узлы найденных городов
+- Сохранение выбранного города в cookie `cityId`
+- При открытии модала с уже выбранным городом — автоматическая подсветка соответствующего округа и региона
 
-## Expanding the ESLint configuration
+## Решения и отступления от макета
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Поиск**: при вводе запроса в колонке регионов отображаются все регионы из всех округов, у которых есть совпадающие города. Это соответствует формулировке ТЗ — *"остальные колонки отображают родительские узлы найденных городов"*. В макете показан только один вариант данных, поэтому точное воспроизведение поведения для всех случаев основано на ТЗ.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Запуск
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+npm run dev
 ```
