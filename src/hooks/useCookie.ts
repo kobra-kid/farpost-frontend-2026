@@ -1,21 +1,21 @@
-import Cookies from "js-cookie";
+import Cookies from 'js-cookie'
 
 export const useCookie = (key: string) => {
-    const get = (): string | undefined => {
-        return Cookies.get(key);
-    }
+  const get = (): string | undefined => {
+    return Cookies.get(key)
+  }
 
-    const set = (value: string) => {
-        Cookies.set(key, value);
-    }
+  const set = (value: string) => {
+    Cookies.set(key, value)
+  }
 
-    const remove = () => {
-        Cookies.remove(key);
-    }
+  const remove = () => {
+    Cookies.remove(key)
+  }
 
-    return {
-        get,
-        set,
-        remove
-    }
-};
+  return {
+    get,
+    set,
+    remove,
+  }
+}
