@@ -1,19 +1,21 @@
 import { useGeoStore } from '../../store/geoStore'
-import { useCookie } from '../../hooks/useCookie'
 import styles from './CitySelector.module.css'
 
-export const CitySelector = () => {
-    const { selectedCity, openModal } = useGeoStore(state => state)
-    const cityIdCookie = useCookie('cityId')
+interface CitySelectorProps {
+  onOpen: () => void
+}
 
-    const cityName = selectedCity?.name ?? (cityIdCookie.get() ? '...' : 'Город не выбран')
+export const CitySelector = ({ onOpen }: CitySelectorProps) => {
+  const selectedCity = useGeoStore((state) => state.selectedCity)
 
-    return (
-        <div className={styles.wrapper}>
-            <button className={styles.button} onClick={openModal}>
-                Выбрать город
-            </button>
-            <span className={styles.cityName}>{cityName}</span>
-        </div>
-    )
+  const cityName = selectedCity?.name ?? 'Город не выбран'
+
+  return (
+    <div className={styles.wrapper}>
+      <button className={styles.button} onClick={onOpen}>
+        Выбрать город
+      </button>
+      <span className={styles.cityName}>{cityName}</span>
+    </div>
+  )
 }
