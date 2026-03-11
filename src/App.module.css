@@ -1,0 +1,16 @@
+.districts {
+  width: 200px;
+  margin: 20px;
+  flex-shrink: 0;
+}
+
+.regions {
+  width: 304px;
+  flex-shrink: 0;
+  margin: 20px;
+}
+
+.cities {
+  flex: 1;
+  padding: 20px;
+}
